@@ -909,6 +909,195 @@ insert  into `provinsi`(`id_prov`,`nama`) values ('82','Maluku Utara');
 insert  into `provinsi`(`id_prov`,`nama`) values ('91','Papua Barat');
 insert  into `provinsi`(`id_prov`,`nama`) values ('92','Papua');
 
+/*Table structure for table `tr_mp_gcl` */
+
+DROP TABLE IF EXISTS `tr_mp_gcl`;
+
+CREATE TABLE `tr_mp_gcl` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `game_code` char(50) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COMMENT='table reference Mobile Pulsa - Game Code List';
+
+/*Data for the table `tr_mp_gcl` */
+
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (1,'103','Mobile Legend');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (2,'127','Ragnarok M: Eternal Love');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (3,'127','Ragnarok M: Midnight Party');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (4,'130','Point Blank');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (5,'135','Free Fire');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (6,'136','Speed Drifters');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (7,'139','Arena of Valor');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (8,'140','Bleach Mobile 3D');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (9,'141','Era of Celestials');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (10,'142','Dragon Nest');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (11,'150','arvel Super War');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (12,'152','Light of Thel: Glory of Cepheus');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (13,'153','Lords Mobile');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (14,'154','LifeAfter');
+insert  into `tr_mp_gcl`(`id`,`game_code`,`name`) values (15,'168','Higgs Domino');
+
+/*Table structure for table `tr_mp_lto` */
+
+DROP TABLE IF EXISTS `tr_mp_lto`;
+
+CREATE TABLE `tr_mp_lto` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `type` char(50) DEFAULT NULL,
+  `list_op` varchar(200) DEFAULT NULL,
+  `nama` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1 COMMENT='table reference Mobile Pulsa - List of Type and Operators';
+
+/*Data for the table `tr_mp_lto` */
+
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (1,'data','axis_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (2,'data','wave_game_dan_telkomsel_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (3,'data','wave_game_dan_xl_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (4,'data','telkomsel',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (5,'data','indosat_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (6,'data','smartfren_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (7,'data','tri_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (8,'data','telkomsel_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (9,'data','xl_paket_internet',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (10,'etoll','steam_dan_gopay',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (11,'etoll','wave_game_dan_gopay',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (12,'etoll','dana',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (13,'etoll','mandiri_e-toll',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (14,'etoll','indomaret_card_e-money',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (15,'etoll','gopay_e-money',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (16,'etoll','linkaja',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (17,'etoll','ovo',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (18,'etoll','shopee_pay',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (19,'etoll','tix_id',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (20,'game','arena_of_valor',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (21,'game','bleach_mobile_3d',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (22,'game','dragon_nest_m_-_sea',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (23,'game','era_of_celestials',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (24,'game','free_fire',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (25,'game','battlenet_sea',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (26,'game','garena',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (27,'game','gemscool',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (28,'game','google_play_us_region',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (29,'game','google_play_indonesia',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (30,'game','higgs_domino',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (31,'game','itunes_us_region',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (32,'game','lyto',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (33,'game','megaxus',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (34,'game','mobile_legend',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (35,'game','razer_pin',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (36,'game','playstation',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (37,'game','steam_sea',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (38,'game','wave_game',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (39,'game','joox',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (40,'game','lifeafter',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (41,'game','light_of_thel:_glory_of_cepheus',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (42,'game','lords_mobile',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (43,'game','marvel_super_war',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (44,'game','minecraft',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (45,'game','nintendo_eshop',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (46,'game','point_blank',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (47,'game','pubg_mobile',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (48,'game','pubg_pc',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (49,'game','ragnarok_m',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (50,'game','skyegrid',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (51,'game','speed_drifters',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (52,'game','spotify',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (53,'game','vidio',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (54,'game','wifi_id',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (55,'pln','pln',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (56,'pln','pasteur_apartment_pln',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (57,'pln','sudirman_suites_pln',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (58,'bangladesh','bangladesh_topup',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (59,'china','china_topup',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (60,'malaysia','malaysia_topup',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (61,'malaysia','celcom',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (62,'malaysia','digi',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (63,'malaysia','maxis',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (64,'malaysia','tunetalk',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (65,'malaysia','umobile',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (66,'malaysia','xox',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (67,'philipines','globe',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (68,'philipines','smart',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (69,'philipines','sun_telecom',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (70,'pulsa','axis',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (71,'pulsa','by.u',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (72,'pulsa','indosat',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (73,'pulsa','smart',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (74,'pulsa','telkomsel',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (75,'pulsa','three',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (76,'pulsa','xixi_games',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (77,'pulsa','xl',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (78,'singapore','m1',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (79,'singapore','singtel',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (80,'singapore','starhub',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (81,'taiwan','chunghwa',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (82,'taiwan','if_taiwan_topup',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (83,'taiwan','ok_taiwan_topup',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (84,'thailand','thailand_topup',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (85,'vietnam','vietnam_topup_2',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (86,'voucher','alfamart_voucher',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (87,'voucher','transmart_carrefour',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (88,'voucher','grab_gifts',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (89,'voucher','indomaret_voucher',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (90,'voucher','tokopedia',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (91,'voucher','udemy_voucher',NULL);
+insert  into `tr_mp_lto`(`id`,`type`,`list_op`,`nama`) values (92,'voucher','voucher_universitas_mulawarman',NULL);
+
+/*Table structure for table `tr_mp_prefix` */
+
+DROP TABLE IF EXISTS `tr_mp_prefix`;
+
+CREATE TABLE `tr_mp_prefix` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `nomor` char(50) DEFAULT NULL,
+  `operator` varchar(200) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 COMMENT='table reference Mobile Pulsa - Prefix List';
+
+/*Data for the table `tr_mp_prefix` */
+
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (1,'0814','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (2,'0815','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (3,'0816','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (4,'0855','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (5,'0856','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (6,'0857','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (7,'0858','indosat','INDOSAT');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (8,'0817','xl','XL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (9,'0818','xl','XL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (10,'0819','xl','XL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (11,'0859','xl','XL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (12,'0878','xl','XL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (13,'0877','xl','XL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (14,'0838','axis','AXIS');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (15,'0837','axis','AXIS');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (16,'0831','axis','AXIS');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (17,'0832','axis','AXIS');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (18,'0812','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (19,'0813','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (20,'0852','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (21,'0853','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (22,'0821','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (23,'0823','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (24,'0822','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (25,'0851','telkomsel','TELKOMSEL');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (26,'0881','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (27,'0882','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (28,'0883','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (29,'0884','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (30,' 0885','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (31,'0886','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (32,'0887','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (33,'0888','smartfren','SMARTFREN');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (34,'0896','three','THREE');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (35,'0897','three','THREE');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (36,'0898','three','THREE');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (37,'0899','three','THREE');
+insert  into `tr_mp_prefix`(`id`,`nomor`,`operator`,`name`) values (38,'0895','three','THREE');
+
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;

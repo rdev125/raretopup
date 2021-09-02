@@ -125,6 +125,102 @@ class Landing extends CI_Controller {
     		$this->load->view('event',["data"=>$data]);
 	    }
 	}
+
+    public function mobilepulsa($commands='',$id='')
+    {
+        header('Content-Type: application/json');
+        $arrjson = array();
+        $arrjson['username'] = $username = "085710454016";
+        $apiKey   = "533611f5b6d92f79";
+        switch($commands){
+            case 'bl':
+                $signature  = md5($username.$apiKey.$commands);
+                $arrjson['commands'] = 'balance';
+                $arrjson['sign']     = $signature;
+                break;
+            case 'pl':
+                $signature  = md5($username.$apiKey.$commands);
+                $arrjson['commands'] = 'pricelist';
+                $arrjson['sign']     = $signature;
+                $arrjson['status']   = 'all'; //Active / Non Active
+                break;
+            case 'topup':
+                $ref_id  = '123';//uniqid('');//61304ad0df0a7/613054fc869e5
+                $code = 'xld25000';// auto detect operator : pulsa10000, pulsa100000, pulsa1000000, pulsa150000, pulsa20000, pulsa200000, pulsa25000, pulsa30000, pulsa300000, pulsa5000, pulsa50000, pulsa500000
+                $signature  = md5($username.$apiKey.$ref_id);
+                $arrjson['commands'] = 'topup';
+                $arrjson['sign']     = $signature;
+                $arrjson['ref_id']   = $ref_id;
+                $arrjson['hp']       = "081777721115";
+                $arrjson['pulsa_code']   =  $code;
+                break;
+            case 'inquiry':
+                $ref_id  = $id;//'61304ad0df0a7';//uniqid('');//613054fc869e5
+                $code = 'xld25000';
+                $signature  = md5($username.$apiKey.$ref_id);
+                $arrjson['commands'] = 'inquiry';
+                $arrjson['sign']     = $signature;
+                $arrjson['ref_id']   = $ref_id;
+                break;
+            case 'game-format-id':
+                $game_code  = '103';//table tr_mp_gcl contoh : 103 = Mobile Legends
+                $signature  = md5($username.$apiKey.$game_code);
+                $arrjson['commands'] = 'game-format-id';
+                $arrjson['sign']     = $signature;
+                $arrjson['game_code']   = $game_code;
+                break;
+            case 'check-game-id':
+                $game_code  = '103';//table tr_mp_gcl contoh : 103 = Mobile Legends
+                $signature  = md5($username.$apiKey.$game_code);
+                $arrjson['commands'] = 'check-game-id';
+                $arrjson['sign']     = $signature;
+                $arrjson['game_code']   = $game_code;
+                $arrjson['hp']       = "156378300|8483";//test
+                break;
+            case 'game-server-list':
+                $game_code  = '142';//table tr_mp_gcl contoh : 103 = Mobile Legends
+                $signature  = md5($username.$apiKey.$game_code);
+                $arrjson['commands'] = 'game-server-list';
+                $arrjson['sign']     = $signature;
+                $arrjson['game_code']   = $game_code;
+                break;
+            case 'inquiry_pln':
+                $hp  = '12345678901';//'61304ad0df0a7';//uniqid('');//613054fc869e5
+                $signature  = md5($username.$apiKey.$hp);
+                $arrjson['commands'] = 'inquiry_pln';
+                $arrjson['sign']     = $signature;
+                $arrjson['hp']   = $hp;
+                break;
+            default:
+               die($event.' not found');
+               break;
+        }
+        $json = json_encode($arrjson);
+        // print_r($json);
+
+        $url = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
+
+        $ch  = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        print_r($data);
+    }
+
+    public function Callback()
+    {
+        $data = file_get_contents('php://input');
+        $my_file = 'file.txt';
+        $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+        fwrite($handle, $data);
+        fclose($handle);
+    }
 	
 	public function ramadhansale()
 	{
