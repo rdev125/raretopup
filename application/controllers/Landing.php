@@ -8,9 +8,151 @@ class Landing extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("X3/RamadhanActivity","model");
+        $this->load->model("MobilePulsa/Pricelist","model_mp_pl");
+        $this->load->model("MobilePulsa/GameFormat","model_mp_gameformat");
 		$this->load->library('session');
 		include_once "email/class.phpmailer.php";
 	}
+
+    public function pass_new(){
+        $options = [
+            'cost' => 10,
+        ];
+        echo password_hash("admin", PASSWORD_BCRYPT, $options);
+    }
+
+    public function mobilepulsa($commands='',$id='',$dev=true)
+    {
+        header('Content-Type: application/json');
+        $arrjson = array();
+        $arrjson['username'] = $username = "085710454016";
+        $apiKey   = "533611f5b6d92f79";
+        switch($commands){
+            case 'bl':
+                $signature  = md5($username.$apiKey.$commands);
+                $arrjson['commands'] = 'balance';
+                $arrjson['sign']     = $signature;
+                break;
+            case 'pl':
+                $signature  = md5($username.$apiKey.$commands);
+                $arrjson['commands'] = 'pricelist';
+                $arrjson['sign']     = $signature;
+                $arrjson['status']   = 'all'; //Active / Non Active
+                break;
+            //ini yg bahaya
+            case 'topup':
+                $ref_id  = '123';//uniqid('');//61304ad0df0a7/613054fc869e5
+                $code = 'xld25000';// auto detect operator : pulsa10000, pulsa100000, pulsa1000000, pulsa150000, pulsa20000, pulsa200000, pulsa25000, pulsa30000, pulsa300000, pulsa5000, pulsa50000, pulsa500000
+                $signature  = md5($username.$apiKey.$ref_id);
+                $arrjson['commands'] = 'topup';
+                $arrjson['sign']     = $signature;
+                $arrjson['ref_id']   = $ref_id;
+                $arrjson['hp']       = "081777721115";
+                $arrjson['pulsa_code']   =  $code;
+                break;
+            //---ini
+            case 'inquiry':
+                $ref_id  = $id;//'61304ad0df0a7';//uniqid('');//613054fc869e5
+                $signature  = md5($username.$apiKey.$ref_id);
+                $arrjson['commands'] = 'inquiry';
+                $arrjson['sign']     = $signature;
+                $arrjson['ref_id']   = $ref_id;
+                break;
+            case 'game-format-id':
+                $game_code  = $id;//table tr_mp_gcl contoh : 103 = Mobile Legends
+                $signature  = md5($username.$apiKey.$game_code);
+                $arrjson['commands'] = 'game-format-id';
+                $arrjson['sign']     = $signature;
+                $arrjson['game_code']   = $game_code;
+                break;
+            case 'check-game-id':
+                $game_code  = $id;//table tr_mp_gcl contoh : 103 = Mobile Legends
+                $signature  = md5($username.$apiKey.$game_code);
+                $arrjson['commands'] = 'check-game-id';
+                $arrjson['sign']     = $signature;
+                $arrjson['game_code']   = $game_code;
+                $arrjson['hp']       = "156378300|8483";//test
+                break;
+            case 'game-server-list':
+                $game_code  = '142';//table tr_mp_gcl contoh : 103 = Mobile Legends
+                $signature  = md5($username.$apiKey.$game_code);
+                $arrjson['commands'] = 'game-server-list';
+                $arrjson['sign']     = $signature;
+                $arrjson['game_code']   = $game_code;
+                break;
+            case 'inquiry_pln':
+                $hp  = '12345678901';//'61304ad0df0a7';//uniqid('');//613054fc869e5
+                $signature  = md5($username.$apiKey.$hp);
+                $arrjson['commands'] = 'inquiry_pln';
+                $arrjson['sign']     = $signature;
+                $arrjson['hp']   = $hp;
+                break;
+            default:
+               die($commands.' not found');
+               break;
+        }
+        $json = json_encode($arrjson);
+        // print_r($json);
+
+        $url = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
+
+        $ch  = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+        if($dev){
+            print_r($data);
+        }else{
+            return $data;
+        }
+    }
+
+    public function savedb($commands='',$id='')
+    {
+        switch($commands){
+            case 'pl':
+                $save = json_decode($this->mobilepulsa($commands,null,false));
+                foreach ($save->data as $keysave => $valuesave) {
+                    $_REQUEST['input'] = $valuesave;
+                    $get_data = $this->model_mp_pl->GetById($valuesave->pulsa_code);
+                    if(isset($get_data)){
+                        $_REQUEST['pulsa_code'] = $valuesave->pulsa_code;
+                        $this->model_mp_pl->Update();
+                    }else{
+                        $this->model_mp_pl->Insert();
+                    }
+                    //select
+                    //$this->model_mp_pl->Insert();
+                }
+                print_r('Berhasil');
+                break;
+            case 'game-format-id':
+                $save = json_decode($this->mobilepulsa($commands,$id,false));
+                $exsave = explode("|",$save->data->formatGameId);
+                foreach ($exsave as $keyexsave => $valexsave) {
+                    $_REQUEST['input']['format_code'] = $valexsave;
+                    $get_data = $this->model_mp_gameformat->GetByArrId(array($id,$valexsave));
+                    print_r($get_data);die('sini');
+                    if(isset($get_data)){
+                        $_REQUEST['format_code'] = $valexsave;
+                        $this->model_mp_gameformat->Update();
+                    }else{
+                        $this->model_mp_gameformat->Insert();
+                    }
+                    //select
+                    //$this->model_mp_pl->Insert();
+                }
+                break;
+            default:
+               die($commands.' not found');
+               break;
+        }
+    }
 
 	public function index($event=null)
 	{
@@ -125,93 +267,6 @@ class Landing extends CI_Controller {
     		$this->load->view('event',["data"=>$data]);
 	    }
 	}
-
-    public function mobilepulsa($commands='',$id='')
-    {
-        header('Content-Type: application/json');
-        $arrjson = array();
-        $arrjson['username'] = $username = "085710454016";
-        $apiKey   = "533611f5b6d92f79";
-        switch($commands){
-            case 'bl':
-                $signature  = md5($username.$apiKey.$commands);
-                $arrjson['commands'] = 'balance';
-                $arrjson['sign']     = $signature;
-                break;
-            case 'pl':
-                $signature  = md5($username.$apiKey.$commands);
-                $arrjson['commands'] = 'pricelist';
-                $arrjson['sign']     = $signature;
-                $arrjson['status']   = 'all'; //Active / Non Active
-                break;
-            case 'topup':
-                $ref_id  = '123';//uniqid('');//61304ad0df0a7/613054fc869e5
-                $code = 'xld25000';// auto detect operator : pulsa10000, pulsa100000, pulsa1000000, pulsa150000, pulsa20000, pulsa200000, pulsa25000, pulsa30000, pulsa300000, pulsa5000, pulsa50000, pulsa500000
-                $signature  = md5($username.$apiKey.$ref_id);
-                $arrjson['commands'] = 'topup';
-                $arrjson['sign']     = $signature;
-                $arrjson['ref_id']   = $ref_id;
-                $arrjson['hp']       = "081777721115";
-                $arrjson['pulsa_code']   =  $code;
-                break;
-            case 'inquiry':
-                $ref_id  = $id;//'61304ad0df0a7';//uniqid('');//613054fc869e5
-                $code = 'xld25000';
-                $signature  = md5($username.$apiKey.$ref_id);
-                $arrjson['commands'] = 'inquiry';
-                $arrjson['sign']     = $signature;
-                $arrjson['ref_id']   = $ref_id;
-                break;
-            case 'game-format-id':
-                $game_code  = '103';//table tr_mp_gcl contoh : 103 = Mobile Legends
-                $signature  = md5($username.$apiKey.$game_code);
-                $arrjson['commands'] = 'game-format-id';
-                $arrjson['sign']     = $signature;
-                $arrjson['game_code']   = $game_code;
-                break;
-            case 'check-game-id':
-                $game_code  = '103';//table tr_mp_gcl contoh : 103 = Mobile Legends
-                $signature  = md5($username.$apiKey.$game_code);
-                $arrjson['commands'] = 'check-game-id';
-                $arrjson['sign']     = $signature;
-                $arrjson['game_code']   = $game_code;
-                $arrjson['hp']       = "156378300|8483";//test
-                break;
-            case 'game-server-list':
-                $game_code  = '142';//table tr_mp_gcl contoh : 103 = Mobile Legends
-                $signature  = md5($username.$apiKey.$game_code);
-                $arrjson['commands'] = 'game-server-list';
-                $arrjson['sign']     = $signature;
-                $arrjson['game_code']   = $game_code;
-                break;
-            case 'inquiry_pln':
-                $hp  = '12345678901';//'61304ad0df0a7';//uniqid('');//613054fc869e5
-                $signature  = md5($username.$apiKey.$hp);
-                $arrjson['commands'] = 'inquiry_pln';
-                $arrjson['sign']     = $signature;
-                $arrjson['hp']   = $hp;
-                break;
-            default:
-               die($event.' not found');
-               break;
-        }
-        $json = json_encode($arrjson);
-        // print_r($json);
-
-        $url = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
-
-        $ch  = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $data = curl_exec($ch);
-        curl_close($ch);
-
-        print_r($data);
-    }
 
     public function Callback()
     {

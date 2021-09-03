@@ -14,6 +14,17 @@ class PTM_Model extends CI_Model {
             return $query->row();
         }
 
+        public function GetByArrId($id){
+            $query = $this->db;
+            if(is_array($this->primary_key)){
+                foreach ($this->primary_key as $keypk => $valpk) {
+                    $query->where($valpk,$id[$keypk]);
+                }
+            }
+            $query = $query->get($this->table);
+            return $query->row();
+        }
+
         public function Insert()
         {
             $this->db->trans_begin();
@@ -25,7 +36,7 @@ class PTM_Model extends CI_Model {
         public function Update()
         {
             $this->db->trans_begin();
-            $this->db->update($this->table, $_REQUEST['input'], array('id' => $_REQUEST['id']));
+            $this->db->update($this->table, $_REQUEST['input'], array($this->primary_key => $_REQUEST[$this->primary_key]));
             if ($this->db->trans_status() === FALSE) $this->db->trans_rollback();
             else $this->db->trans_commit();
         }
