@@ -9,8 +9,18 @@ class PTM_Model extends CI_Model {
             return $query->result();
         }
 
-        public function GetById($id){
-            $query = $this->db->where($this->primary_key,$id)->get($this->table);
+        public function GetById($id,$type=''){
+            $query = $this->db;
+            if($type='Arr'){
+                if(is_array($this->primary_key)){
+                    foreach ($this->primary_key as $keypk => $valpk) {
+                        $query->where($valpk,$id[$keypk]);
+                    }
+                }
+            }else{
+                $query = $query->where($this->primary_key,$id);
+            }
+            $query = $query->get($this->table);
             return $query->row();
         }
 

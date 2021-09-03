@@ -136,7 +136,7 @@ class Landing extends CI_Controller {
                 $exsave = explode("|",$save->data->formatGameId);
                 foreach ($exsave as $keyexsave => $valexsave) {
                     $_REQUEST['input']['format_code'] = $valexsave;
-                    $get_data = $this->model_mp_gameformat->GetByArrId(array($id,$valexsave));
+                    $get_data = $this->model_mp_gameformat->GetById(array($id,$valexsave),'Arr');
                     print_r($get_data);die('sini');
                     if(isset($get_data)){
                         $_REQUEST['format_code'] = $valexsave;
