@@ -18,6 +18,20 @@
 		<link href="<?=base_url('assets/bookishow');?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
 		<link href="<?=base_url('assets/bookishow');?>/css/osahan.min.css" rel="stylesheet">
+		<style>
+			.headroom {
+				z-index: 997;
+				padding: 15px 0;
+				will-change: transform;
+				transition: transform 200ms linear;
+			}
+			.headroom--pinned {
+				transform: translateY(0%);
+			}
+			.headroom--unpinned {
+				transform: translateY(-100%);
+			}
+		</style>
 	</head>
 	<body id="page-top">
 		<div id="wrapper">
@@ -254,5 +268,12 @@
 		<script src="<?=base_url('assets/bookishow');?>/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
 
 		<script src="<?=base_url('assets/bookishow');?>/js/osahan.min.js" type="text/javascript"></script>
+		<script src="<?=base_url('assets/bookishow');?>/vendor/headroom/headroom.min.js"></script>
+		<script>
+			var myElement = document.querySelector("nav");
+			var headroom  = new Headroom(myElement);
+			headroom.init();
+			//$("#header").headroom();
+		</script>
 	</body>
 </html>
