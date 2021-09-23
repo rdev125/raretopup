@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" type="image/png" href="<?=base_url('assets/bookishow');?>/img/logo-icon.png">
+		<link rel="icon" type="image/png" href="<?=base_url('assets/bookishow');?>/img/logo-iconR.png">
 		<title>Bookishow - Movies, Events, Sports Website HTML Template</title>
 		<link rel="stylesheet" type="text/css" href="<?=base_url('assets/bookishow');?>/vendor/slick/slick.min.css" />
 		<link rel="stylesheet" type="text/css" href="<?=base_url('assets/bookishow');?>/vendor/slick/slick-theme.min.css" />
@@ -25,7 +25,7 @@
 
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 					<div class="sidebar-brand-icon">
-						<img src="<?=base_url('assets/bookishow');?>/img/logo-icon2.png" alt="">
+						<img src="<?=base_url('assets/bookishow');?>/img/logo-icon.png" alt="">
 					</div>
 					<div class="sidebar-brand-text mx-3"><img src="<?=base_url('assets/bookishow');?>/img/logo.png" alt=""></div>
 				</a>
