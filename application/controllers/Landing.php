@@ -264,7 +264,7 @@ class Landing extends CI_Controller {
     						->join('provinsi as b', 'b.id_prov = a.id_prov')
     						->order_by('b.nama','ASC')
     	 					->get()->result();
-    		$this->load->view('index',["data"=>$data]);
+    		$this->load->view('index',["data"=>$data,"content"=>"frontend/content/home/home"]);
 	    }
 	}
 
