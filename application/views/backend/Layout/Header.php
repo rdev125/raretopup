@@ -7,8 +7,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PT Maxxis International Indonesia | Admin</title>
-  <link rel="shortcut icon" href="https://maxxis.id/wp-content/themes/maxxis/favicon.ico?v=2">
+  <title>Rare top up | Admin</title>
+  <link rel="shortcut icon" href="<?=base_url('assets/img')?>/logo-iconR.png">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -75,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
           <div class="dropdown-divider"></div>
-          <a href="<?= base_url() ?>/auth/logout" class="dropdown-item float-right">
+          <a href="<?= site_url('auth/logout'); ?>" class="dropdown-item float-right">
             <i class="fas fa-sign-out-alt mr-2"></i> Logout
           </a>
       </li>

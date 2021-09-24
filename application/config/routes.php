@@ -54,6 +54,7 @@ $route['default_controller'] = 'landing';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 //Route
+$route['dashboard'] = 'Backend/Dashboard';
 $route['auth'] = 'User';
 $route['auth/logout'] = 'User/logout';
 // $route['landing/(:any)'] = 'landing/index/$1';

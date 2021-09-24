@@ -38,10 +38,10 @@
 			<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-					<div class="sidebar-brand-icon">
+					<!-- <div class="sidebar-brand-icon">
 						<img src="<?=base_url('assets/bookishow');?>/img/logo-icon.png" alt="">
 					</div>
-					<div class="sidebar-brand-text mx-3"><img src="<?=base_url('assets/bookishow');?>/img/logo.png" alt=""></div>
+					<div class="sidebar-brand-text mx-3"><img src="<?=base_url('assets/bookishow');?>/img/logo.png" alt=""></div> -->
 				</a>
 
 				<li class="nav-item active">
@@ -99,7 +99,14 @@
 			<div id="content-wrapper" class="d-flex flex-column">
 
 			<div id="content">
-				<nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow">
+				<nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow fixed-top headroom">
+
+					<a class="sidebar d-flex align-items-center justify-content-center" href="index.html">
+						<div class="sidebar-brand-icon">
+							<img src="<?=base_url('assets/bookishow');?>/img/logo-icon.png" alt="">
+						</div>
+						<div class="sidebar-brand-text mx-3"><img src="<?=base_url('assets/bookishow');?>/img/logo.png" alt=""></div>
+					</a>
 					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 						<i class="fa fa-bars"></i>
 					</button>
@@ -216,12 +223,13 @@
 								<a class="dropdown-item" href="profile.html"><i class="fas fa-list-alt fa-sm fa-fw mr-2 text-gray-400"></i>Your Lists</a>
 								<a class="dropdown-item" href="profile.html"><i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>Account Settings</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a>
+								<a class="dropdown-item" href="<?=site_url('auth');?>"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Login</a>
+								<!-- <a class="dropdown-item" href="<?=site_url('auth');?>" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a> -->
 							</div>
 						</li>
 					</ul>
 				</nav>
-				<div class="container-fluid">
+				<div class="container-fluid" style="margin-top:90px">
 					<?php $this->load->view($content);?>
 				</div>
 			</div>
